@@ -15,7 +15,6 @@ import KeepAwake from 'react-native-keep-awake'
 import Orientation from 'react-native-orientation'
 import Icons from 'react-native-vector-icons/MaterialIcons'
 import { Controls } from './'
-import { checkSource } from './utils'
 const Win = Dimensions.get('window')
 const backgroundColor = '#000'
 
@@ -377,12 +376,8 @@ class Video extends Component {
         ]}
       >
         <StatusBar hidden={fullScreen} />
-        {
-          ((loading && placeholder) || currentTime < 0.01) &&
-          <Image resizeMode="cover" style={styles.image} {...checkSource(placeholder)} />
-        }
         <VideoPlayer
-          {...checkSource(url)}
+          source={url}
           paused={paused}
           resizeMode={resizeMode}
           repeat={loop}
